@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import make_password
 class UserSerilizer(serializers.ModelSerializer):
     password2 = serializers.CharField(required=False)
     class Meta:
-        model = 'User'
+        model = User
         fields = '__all__'
 
     def validate(self, data):
