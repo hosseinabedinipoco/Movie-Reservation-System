@@ -7,6 +7,12 @@ class UserSerilizer(serializers.ModelSerializer):
         model = 'User'
         fields = '__all__'
 
+    def validate(self, data):
+        if data['password'] != data['password2']:
+            raise serializers.ValidationError("password must be same")
+        return data
+
+
     def create(self, validated_data):
         user = User.objects.create(
             username = validated_data['username'],
