@@ -25,4 +25,12 @@ class login(APIView):
         password = data['password']
         user = get_object_or_404(User, username=username)
         if user.check_password(password):
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            }, status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response({'error': 'Icorrect password'}, status=status.HTTP_401_UNAUTHORIZED)
+
             
