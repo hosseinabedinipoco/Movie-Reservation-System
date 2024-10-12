@@ -6,7 +6,7 @@ class Movie(models.Model):
     description = models.CharField(max_length=200)
     director = models.CharField(max_length=50)
     time_in_minute = models.PositiveIntegerField()
-    
+    genre = models.CharField(max_length=10, default="")
 
     def __str__(self):
         return self.title

@@ -10,6 +10,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 # Create your views here.
 
 class signup(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         user = UserSerilizer(data=request.data)
         if user.is_valid():
@@ -19,6 +20,7 @@ class signup(APIView):
             return Response(user.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class login(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         data = request.data
         username = data['username']
