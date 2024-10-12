@@ -31,4 +31,7 @@ class update_movie(APIView):
         
 class delete_movie(APIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
-    pass
+    def delete(self, request):
+        movie = get_object_or_404(Movie, pk=id)
+        movie.delete()
+        return Response({"message":"deleted"}, status=status.HTTP_204_NO_CONTENT)
