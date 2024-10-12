@@ -4,6 +4,8 @@ from rest_framework.decorators import APIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .serializers import MovieSerializer
 from rest_framework import status
+from django.shortcuts import get_object_or_404
+from .models import Movie
 # Create your views here.
 
 class add_movie(APIView):
@@ -18,8 +20,15 @@ class add_movie(APIView):
 
 class update_movie(APIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
-    pass
-
+    def put(self, request, id):
+        movie = get_object_or_404(Movie, pk=id)
+        movie_serializer = MovieSerializer(movie, data=request.data)
+        if movie_serializer.is_valid():
+            movie_serializer.save()
+            return Response(movie_serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(movie_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
 class delete_movie(APIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
     pass
