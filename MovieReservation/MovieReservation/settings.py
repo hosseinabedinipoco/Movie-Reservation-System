@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'movies.apps.MoviesConfig',
-
+    'cinema.apps.CinemaConfig',
 ]
 
 AUTH_USER_MODEL = 'users.User'
