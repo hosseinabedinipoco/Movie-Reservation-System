@@ -6,10 +6,11 @@ from .serializers import MovieSerializer
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Movie
+from users.permissions import Is_admin
 # Create your views here.
 
 class add_movie(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated, Is_admin]
     def post(self, request):
         movie = MovieSerializer(data=request.data)
         if movie.is_valid():
@@ -19,7 +20,7 @@ class add_movie(APIView):
             return Response(movie.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class update_movie(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated, Is_admin]
     def put(self, request, id):
         movie = get_object_or_404(Movie, pk=id)
         movie_serializer = MovieSerializer(movie, data=request.data)
@@ -30,8 +31,8 @@ class update_movie(APIView):
             return Response(movie_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 class delete_movie(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
-    def delete(self, request):
+    permission_classes = [IsAuthenticated, Is_admin]
+    def delete(self, request, id):
         movie = get_object_or_404(Movie, pk=id)
         movie.delete()
         return Response({"message":"deleted"}, status=status.HTTP_204_NO_CONTENT)

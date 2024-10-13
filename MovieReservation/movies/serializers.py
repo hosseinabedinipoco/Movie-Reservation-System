@@ -15,7 +15,7 @@ class MovieSerializer(serializers.ModelSerializer):
         movie = Movie.objects.create(
             title = validated_data['title'],
             description = validated_data['description'],
-            time_in_minute = validated_data['time'],
+            time_in_minute = validated_data['time_in_minute'],
             director = validated_data['director'],
             genre = validated_data['genre']
         )    
