@@ -4,7 +4,7 @@ from django.core.validators import MaxValueValidator
 class Cinema(models.Model):
     name = models.CharField(max_length=50)
     city = models.CharField(max_length=30)
-    capacity = models.IntegerField()
+    capacity = models.PositiveIntegerField()
     Address = models.CharField(max_length=100)
     rate = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5)])
 
