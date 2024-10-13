@@ -30,6 +30,10 @@ class Update_Cinema(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        
+
 class delete_Cinema(APIView):
     permission_classes = [Is_admin, IsAuthenticated]        
+    def delete(self, request, id):
+        cinema = get_object_or_404(Cinema, pk=id)
+        cinema.delete()
+        return Response({'message':"deleted"}, status=status.HTTP_204_NO_CONTENT)
