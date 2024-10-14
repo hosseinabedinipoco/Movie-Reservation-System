@@ -11,3 +11,10 @@ class Cinema(models.Model):
     def __str__(self):
         return self.name
     
+class Seat(models.Model):
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+    row = models.PositiveSmallIntegerField()
+    number = models.PositiveIntegerField()
+    
+    def __str__(self):
+        return self.cinema + ", " + self.row +", " + self.number
