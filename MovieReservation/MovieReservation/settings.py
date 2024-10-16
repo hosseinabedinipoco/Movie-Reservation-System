@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'movies.apps.MoviesConfig',
     'cinema.apps.CinemaConfig',
     'reservation.apps.ReservationConfig',
+    'shows.apps.ShowsConfig'
 ]
 
 AUTH_USER_MODEL = 'users.User'
