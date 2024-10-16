@@ -22,5 +22,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('movies/', include('movies.urls')),
     path('cinema/', include('cinema.urls')),
-    path('reservation/', include('reservation.urls'))
+    path('reservation/', include('reservation.urls')),
+    path('shows/', include('shows.urls'))
 ]
